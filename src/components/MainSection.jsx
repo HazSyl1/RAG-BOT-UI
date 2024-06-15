@@ -396,7 +396,7 @@ const Modal = ({ title, onClose,files, setFiles, handleUpload }) => {
 };
 
 
-const MainSection = () => {
+const MainSection = ({sessionId}) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -419,7 +419,9 @@ const MainSection = () => {
         else if(selectedOption === "Google"){
             formData.append('model',"GOOGLE");
         }
-        console.log("SENDING:",formData);
+        formData.append('session_id', sessionId);
+        console.log("SESSION:",sessionId);
+        console.log("SENDING:",formData.entries());
         try{
             setLoading(true);
             const response = await axios.post('http://127.0.0.1:8000/upload_files',formData,{
@@ -431,7 +433,7 @@ const MainSection = () => {
             navigate('/page',{state: {pdfFiles: files}});
         }
         catch (error){
-            alert("Error Uploading Files. Please try again");
+            alert("Error Uploading Files, Please refresh and try again",error);
             console.error('Error Uploading Files',error);
         } finally{
             setLoading(false);

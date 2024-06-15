@@ -4,7 +4,7 @@ import PdfPreview from './PdfPreview'
 import '../styles/Page.css'
 import { useLocation } from 'react-router-dom'
 
-const Page = ({pdfFiles}) => {
+const Page = ({pdfFiles,sessionId}) => {
   const location = useLocation();
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [file, setFile] = useState(null);
@@ -17,7 +17,7 @@ const Page = ({pdfFiles}) => {
     setSelectedFile(files[0]);
   }, [location.state]);
   
-
+console.log("PAGE SESSION_ID:",sessionId)
 
   return (
     <>
@@ -26,7 +26,7 @@ const Page = ({pdfFiles}) => {
                 <PdfPreview pdfFiles= {filesArray} selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
             </div>
             <div className='chatbot-container'>
-                <Chat file={selectedFile}/>
+                <Chat file={selectedFile} sessionId={sessionId}/>
             </div>
         </div>  
     </>

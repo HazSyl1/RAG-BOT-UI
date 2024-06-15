@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Chat.css';
 
-const Chatbot = ({file}) => {
+const Chatbot = ({file, sessionId}) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [botTyping, setBotTyping] = useState(false);
@@ -71,7 +71,7 @@ const Chatbot = ({file}) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({question: 'What are the main topics , 4 at max.'}),
+      body: JSON.stringify({question: 'What are the main topics , 4 at max.',session_id: sessionId}),
     });
     const botMessage = await response.json();
     setIsFileUploaded(true);
@@ -80,6 +80,7 @@ const Chatbot = ({file}) => {
     const firstResponse  = `Hello, I am your document assistant. I can help you with any questions you may have regarding the submited documents.<br/><br/> ${botMessage.response}<br/><br/> Please feel free to ask me a question about the document.`;
     animateText(firstResponse);
   };
+  console.log("CHAT SESSION_ID:",sessionId)
 
   useEffect(() => {
     const scrollToBottom = () => {
@@ -102,7 +103,7 @@ const Chatbot = ({file}) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({question: input}),
+        body: JSON.stringify({question: input,session_id: sessionId}),
       });
       
       if (response.ok) {
@@ -111,7 +112,7 @@ const Chatbot = ({file}) => {
         setBotTyping(true);
         animateText(data.response);
       } else {
-        console.error('Error:', response.statusText);
+        console.error('Error:', response.error);
       }
     }
   };
