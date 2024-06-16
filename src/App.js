@@ -11,7 +11,7 @@ function App() {
   const[sessionId,setSessionId] = useState(localStorage.getItem('session_id') ||null);
   
   const serverUrl = process.env.REACT_APP_SERVER_URL;
-
+  console.log(serverUrl);
   useEffect(()=>{
     const initSession=async()=>{
       try{

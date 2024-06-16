@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Chat.css';
 
-const Chatbot = ({file, sessionId}) => {
+const Chatbot = ({sessionId}) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [botTyping, setBotTyping] = useState(false);
   const [animatedText, setAnimatedText] = useState('');
   const [isArrowButtonLoading, setIsArrowButtonLoading] = useState(false);
-  const [fileUploading, setFileUploading] = useState(false);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   const chatWindowRef = useRef(null);
   const arrowButtonRef = useRef(null);
@@ -254,14 +253,7 @@ const Chatbot = ({file, sessionId}) => {
           
         </div>
       </>
-      ) : (fileUploading ? 
-        (
-        <>
-          <div className="loading-message">
-            <img src='scanningdoc.gif' className='sun'/>
-            <div className='loadmsg-text'>Executing document...</div>
-          </div>
-        </>
+      
         )
         :
         (
@@ -273,7 +265,7 @@ const Chatbot = ({file, sessionId}) => {
           </div>
         </>
         )
-      )
+      
     }
     </div>
   );
