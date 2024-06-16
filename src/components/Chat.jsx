@@ -13,6 +13,8 @@ const Chatbot = ({file, sessionId}) => {
   const arrowButtonRef = useRef(null);
   const hasSentPresetQuery = useRef(false);
 
+  const serverUrl = process.env.REACT_APP_SERVER_URL;
+
   const formatTime = (date) => {
     let hours = date.getHours();
     let minutes = date.getMinutes();
@@ -66,12 +68,12 @@ const Chatbot = ({file, sessionId}) => {
   // };
 
   const sendPresetQuery = async () => {
-    const response = await fetch('https://rag-chat-pdf.onrender.com/chat', {
+    const response = await fetch(`${serverUrl}/chat`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({question: 'What are the main topics , 4 at max.',session_id: sessionId}),
+      body: JSON.stringify({question: 'What are the main topics in the given information , 4 at max.',session_id: sessionId}),
     });
     const botMessage = await response.json();
     setIsFileUploaded(true);
@@ -98,7 +100,7 @@ const Chatbot = ({file, sessionId}) => {
       setMessages([...messages, userMessage]);
       setInput('');
 
-      const response = await fetch('https://rag-chat-pdf.onrender.com/chat', {
+      const response = await fetch(`${serverUrl}/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -173,7 +175,7 @@ const Chatbot = ({file, sessionId}) => {
   useEffect(() => {
     const handleScroll = () => {
       if (chatWindowRef.current) {
-        const threshold = 10;
+        const threshold = 2;
         const { scrollTop, scrollHeight, clientHeight } = chatWindowRef.current;
         const isAtBottom = scrollHeight - scrollTop <= clientHeight + threshold;
         console.log('isAtBottom', isAtBottom)
