@@ -424,7 +424,7 @@ const MainSection = ({sessionId}) => {
         console.log("SENDING:",formData.entries());
         try{
             setLoading(true);
-            const response = await axios.post('http://127.0.0.1:8000/upload_files',formData,{
+            const response = await axios.post('https://rag-chat-pdf.onrender.com/upload_files',formData,{
                 headers:{
                     'Content-Type':'multipart/form-data',
                 },

@@ -13,7 +13,7 @@ function App() {
   useEffect(()=>{
     const initSession=async()=>{
       try{
-      const response = await axios.get('http://127.0.0.1:8000/create_session');
+      const response = await axios.get('https://rag-chat-pdf.onrender.com/create_session');
       const ses=response.data
       setSessionId(ses['session_id'])
       localStorage.setItem('sessionId', ses['session_id']);
@@ -32,7 +32,7 @@ function App() {
   
   const handleTabClose=async(event)=>{
 try{
-  axios.post('http://127.0.0.1:8000/delete_session',{session_id:localStorage.getItem('sessionId')});
+  axios.post('https://rag-chat-pdf.onrender.com/delete_session',{session_id:localStorage.getItem('sessionId')});
   setSessionId(null);
   localStorage.removeItem('sessionId');
   console.log("Session Closed!")

@@ -66,7 +66,7 @@ const Chatbot = ({file, sessionId}) => {
   // };
 
   const sendPresetQuery = async () => {
-    const response = await fetch('http://127.0.0.1:8000/chat', {
+    const response = await fetch('https://rag-chat-pdf.onrender.com/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ const Chatbot = ({file, sessionId}) => {
       setMessages([...messages, userMessage]);
       setInput('');
 
-      const response = await fetch('http://localhost:8000/chat', {
+      const response = await fetch('https://rag-chat-pdf.onrender.com/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
