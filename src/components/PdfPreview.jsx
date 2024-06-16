@@ -11,13 +11,13 @@ const PdfPreview = ({selectedFile, setSelectedFile, pdfFiles}) => {
     const containerRef = React.useRef(null);
 
     const onDocumentLoadSuccess = ({ numPages }) => {
-        console.log("Document Loaded Successfully");
+        // console.log("Document Loaded Successfully");
         setNumPages(numPages);
         setPageNumber(1);
       };
 
       const onDocumentLoadError = (error) => {
-        console.error('Error loading PDF:', error);
+        // console.error('Error loading PDF:', error);
         alert('Error loading PDF. Please check the console for details.');
     };
 

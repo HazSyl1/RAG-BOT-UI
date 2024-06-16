@@ -455,7 +455,7 @@ const MainSection = ({sessionId}) => {
   const handleUpload = async() =>{
     closeModal();
     if(!files.length){alert("No Files Selected"); return};
-        console.log("Sending:",files);
+        // console.log("Sending:",files);
         const formData=new FormData();
         files.forEach((file)=>{
             formData.append('files',file);
@@ -466,8 +466,8 @@ const MainSection = ({sessionId}) => {
             formData.append('model',"GOOGLE");
         }
         formData.append('session_id', sessionId);
-        console.log("SESSION:",sessionId);
-        console.log("SENDING:",formData.entries());
+        // console.log("SESSION:",sessionId);
+        // console.log("SENDING:",formData.entries());
         try{
             setLoading(true);
             const response = await axios.post(`${serverUrl}/upload_files`,formData,{
@@ -475,12 +475,12 @@ const MainSection = ({sessionId}) => {
                     'Content-Type':'multipart/form-data',
                 },
             });
-            console.log("Message",response.data.message ,"Files:",response.data.filenames) ;
+            // console.log("Message",response.data.message ,"Files:",response.data.filenames) ;
             navigate('/page',{state: {pdfFiles: files}});
         }
         catch (error){
             alert("Error Uploading Files, Please refresh and try again",error);
-            console.error('Error Uploading Files',error);
+            // console.error('Error Uploading Files',error);
         } finally{
             setLoading(false);
         }

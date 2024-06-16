@@ -27,7 +27,7 @@ const Chatbot = ({sessionId}) => {
   useEffect(() => {
     if (!hasSentPresetQuery.current) {
       sendPresetQuery();
-      console.log('sendPresetQuery')
+      // console.log('sendPresetQuery')
       hasSentPresetQuery.current = true;
     }
   }, []);
@@ -81,7 +81,7 @@ const Chatbot = ({sessionId}) => {
     const firstResponse  = `Hello, I am your document assistant. I can help you with any questions you may have regarding the submited documents.<br/><br/> ${botMessage.response}<br/><br/> Please feel free to ask me a question about the document.`;
     animateText(firstResponse);
   };
-  console.log("CHAT SESSION_ID:",sessionId)
+  // console.log("CHAT SESSION_ID:",sessionId)
 
   useEffect(() => {
     const scrollToBottom = () => {
@@ -151,7 +151,7 @@ const Chatbot = ({sessionId}) => {
     if (chatWindowRef.current) {
       chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
     }
-    console.log('scrollToBottomOnClick')
+    // console.log('scrollToBottomOnClick')
   };
 
   const handleInputChange = (e) => {
@@ -177,7 +177,7 @@ const Chatbot = ({sessionId}) => {
         const threshold = 2;
         const { scrollTop, scrollHeight, clientHeight } = chatWindowRef.current;
         const isAtBottom = scrollHeight - scrollTop <= clientHeight + threshold;
-        console.log('isAtBottom', isAtBottom)
+        // console.log('isAtBottom', isAtBottom)
         if (!isAtBottom) {
           arrowButtonRef.current.style.display = 'block';
         } else {

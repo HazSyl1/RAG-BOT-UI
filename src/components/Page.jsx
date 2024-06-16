@@ -21,7 +21,7 @@ const Page = ({pdfFiles,sessionId}) => {
     setSelectedFile(files[0]);
   }, [location.state]);
   
-console.log("PAGE SESSION_ID:",sessionId)
+// console.log("PAGE SESSION_ID:",sessionId)
 
   return (
     <>
